@@ -1,6 +1,6 @@
 # AppleReviewMCP
 
-MCP (Model Context Protocol) server for self-review before Apple App Review submission. It reads the Apple Review documentation stored in the repo (Legal/AppleReview) and exposes tools to list documents, fetch full text, search guidelines, and get a pre-submission checklist.
+MCP (Model Context Protocol) server for self-review before Apple App Review submission. It reads the Apple Review documentation stored in the repo (apple-review-mcp/docs) and exposes tools to list documents, fetch full text, search guidelines, and get a pre-submission checklist.
 
 The documents are point-in-time snapshots; the official Apple developer and legal pages remain the source of truth.
 
