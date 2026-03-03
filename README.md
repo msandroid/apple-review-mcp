@@ -11,7 +11,14 @@ The documents are point-in-time snapshots; the official Apple developer and lega
 
 ## Document path
 
-The server reads `.txt` files from the **Legal/AppleReview** directory. Set `APPLE_REVIEW_DOCS_PATH` to that directory if you run the server from a different working directory. The script `Scripts/run-apple-review-mcp.sh` sets it automatically from the repo root.
+The server reads `.txt` files from a directory you specify via `APPLE_REVIEW_DOCS_PATH`. This repo includes a **docs/** folder with Apple Review document snapshots (App Store Review Guidelines, App Review - Distribute, Trademarks, HIG index, README). To use them when running from the cloned repo:
+
+```bash
+export APPLE_REVIEW_DOCS_PATH="$(pwd)/docs"
+swift run AppleReviewMCPServer
+```
+
+If you use this MCP from another project, point `APPLE_REVIEW_DOCS_PATH` at that project's docs directory or at this repo's `docs/` path.
 
 ## Build
 
@@ -27,12 +34,13 @@ swift build -c release --package-path AppleReviewMCP
 ## Run locally
 
 ```bash
-# From repo root (sets APPLE_REVIEW_DOCS_PATH and runs the server)
-./Scripts/run-apple-review-mcp.sh
+# From this repo (use included docs)
+export APPLE_REVIEW_DOCS_PATH="$(pwd)/docs"
+swift run AppleReviewMCPServer
 
-# Or with explicit path
-export APPLE_REVIEW_DOCS_PATH="/path/to/TranslateBluePackage/Sources/TranslateBlueFeature/Legal/AppleReview"
-swift run --package-path AppleReviewMCP AppleReviewMCPServer
+# Or point to your own directory
+export APPLE_REVIEW_DOCS_PATH="/path/to/your/apple-review-docs"
+swift run AppleReviewMCPServer
 ```
 
 ## Tools
@@ -53,6 +61,15 @@ swift run --package-path AppleReviewMCP AppleReviewMCPServer
 
 ## Cursor configuration
 
-The project adds this server in [.cursor/mcp.json](../.cursor/mcp.json) as `apple-review-mcp`, using `Scripts/run-apple-review-mcp.sh`. No environment variables are required if you use that script (it sets `APPLE_REVIEW_DOCS_PATH`). To override the docs path, add an `env` block for this server with `APPLE_REVIEW_DOCS_PATH`.
+Add to `.cursor/mcp.json` under `mcpServers`:
 
-To use the release binary instead of the script (faster startup), set the server command to the full path of `AppleReviewMCP/.build/release/AppleReviewMCPServer` and set `APPLE_REVIEW_DOCS_PATH` in the server env to the Legal/AppleReview directory path.
+```json
+"apple-review-mcp": {
+  "command": "/path/to/apple-review-mcp-clone/.build/release/AppleReviewMCPServer",
+  "env": {
+    "APPLE_REVIEW_DOCS_PATH": "/path/to/apple-review-mcp-clone/docs"
+  }
+}
+```
+
+Or run via `swift run` from the repo with `APPLE_REVIEW_DOCS_PATH` set to the repo's `docs/` directory.

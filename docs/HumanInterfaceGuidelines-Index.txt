@@ -1,0 +1,16 @@
+Source: https://developer.apple.com/design/human-interface-guidelines/
+Collected: 2026-03-03
+
+================================================================================
+Human Interface Guidelines (HIG) - Index
+================================================================================
+
+This document is an index only. The full Human Interface Guidelines are published as a multi-page resource on Apple's developer site. The content is not stored here because the official HIG is large, frequently updated, and best accessed online.
+
+Official URL (canonical):
+https://developer.apple.com/design/human-interface-guidelines/
+
+Note:
+- The full HIG is the authoritative reference for UI/UX design on Apple platforms (iOS, macOS, watchOS, tvOS, visionOS).
+- App Review references the Human Interface Guidelines when evaluating app design and user experience (e.g. "Substandard user interface", "design guides").
+- For the latest design principles, patterns, and platform-specific guidance, always refer to the official site above.
